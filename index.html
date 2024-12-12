@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Регистрация</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Авоська</div>
+        <nav>
+            <ul>
+                <li><a href="Авторизация.html">Авторизация</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Регистрация </h1>
+        <form id="form">
+            <label for="FioForm">Введите ФИО</label>
+            <input type="name" id="FIO" placeholder="ФИО">
+            <p id="messageFIO" class="error"></p>
+
+            <label for="phoneForm">Введите номер телефона:</label>
+            <input type="tel" id="PHONE" placeholder="+7 (999) 999-99-99">
+            <p id="message" class="error"></p>
+
+            <label for="EmailForm">Введите адрес электронной почты</label>
+            <input type="mail" id="EMAIL" placeholder="example@mail.ru">
+            <p id="messageEmail" class="error"></p>
+
+            <label for="LoginForm">Введите логин </label>
+            <input type="login" id="LOGIN">
+            <p id="messageLogin" class="error"></p>
+
+            <label for="PasswordForm">Введите пароль </label>
+            <input type="password" id="PASSWORD">
+            <p id="messagePassword" class="error"></p>
+
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('form').addEventListener('submit', function (e) {
+            e.preventDefault(); // Останавливаем стандартное поведение формы
+
+            // Получаем значение поля
+            const phone = document.getElementById('PHONE').value.trim();
+            const fio = document.getElementById('FIO').value;
+            const login = document.getElementById('LOGIN').value.trim();
+            const email = document.getElementById('EMAIL').value.trim();
+            const password = document.getElementById('PASSWORD').value.trim();
+
+            const message = document.getElementById('message');
+            const messageFio = document.getElementById('messageFIO');
+            const messageL = document.getElementById('messageLogin');
+            const messageE = document.getElementById('messageEmail');
+            const massageP = document.getElementById('messagePassword');
+
+            // Валидация
+            const phoneRegex = /^\+7\d{10}$/;
+            const fioRegex = /^[А-Яа-яЁё\s]+$/;
+            const loginRegex = /^[a-zA-Z0-9]{3,20}$/;
+            const EmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
+            const passwordRegex = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+
+            // Проверяем введённый номер
+            if (phoneRegex.test(phone)) {
+                message.textContent = "";
+            } else {
+                message.textContent = "Номер телефона должен быть в формате +7 (999) 999-99-99.";
+                message.className = "error";
+            }
+            // Проверяем ФИО
+            if (fioRegex.test(fio)) {
+                messageFio.textContent = "";
+            } else {
+                messageFio.textContent = "ФИО должен быть в формате Иванов Иван Иванович";
+                messageFio.className = "error";
+            }
+
+            // Проверяем логин
+            if (loginRegex.test(login)) {
+                messageL.textContent = "";
+            } else {
+                messageL.textContent = " Логин должен содержать от 3 до 20 символов";
+                messageL.className = "error";
+            }
+
+            // Проверяем введённую почту
+            if (EmailRegex.test(email)) {
+                messageE.textContent = "";
+            } else {
+                messageE.textContent = "Почта должна быть в формате example@mail.ru";
+                messageE.className = "error";
+            }
+
+            //Проверяем пароль
+            if (passwordRegex.test(password)) {
+                massageP.textContent = "";
+            } else {
+                massageP.textContent = "Пароль должен содержать от 8 до 16 символов: a-z, 0-9, _, -, %, #";
+                massageP.className = "error";
+            }
+
+            if (phoneRegex.test(phone) && fioRegex.test(fio) && loginRegex.test(login) && EmailRegex.test(email) && passwordRegex.test(password)) {
+                window.location.href = 'Страница заказов.html';
+            }
+        });
+    </script>
+</body>
+
+</html>

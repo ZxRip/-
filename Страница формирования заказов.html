@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Создание заказа</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Авоська</div>
+    </header>
+    <div class="container">
+        <h1>Создание нового заказа</h1>
+        <form id="order-form">
+            <label for="product">Выберите товар:</label>
+            <select id="product" required>
+                <option value="">Выберите товар</option>
+                <option value="Товар 1">Товар 1</option>
+                <option value="Товар 2">Товар 2</option>
+                <option value="Товар 3">Товар 3</option>
+            </select>
+
+            <label for="quantity">Количество:</label>
+            <input type="number" id="quantity" min="1" required>
+
+            <label for="delivery-address">Адрес доставки:</label>
+            <input type="text" id="delivery-address" required>
+
+            <button type="submit">Оформить заказ</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('order-form')?.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const product = document.getElementById('product').value;
+            const quantity = document.getElementById('quantity').value;
+            const deliveryAddress = document.getElementById('delivery-address').value;
+
+            if (product && quantity && deliveryAddress) {
+                alert("Заказ успешно оформлен!");
+            }
+        });
+    </script>
+</body>
+
+</html>

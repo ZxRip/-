@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Авторизация</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Авоська</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Регистрация</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Авторизация</h1>
+        <form id="login-form">
+            <label for="LOGIN">Логин</label>
+            <input type="text" id="LOGIN" required>
+            <p id="messageLogin" class="error"></p>
+
+            <label for="PASSWORD">Пароль</label>
+            <input type="password" id="PASSWORD" required>
+            <p id="messagePassword" class="error"></p>
+
+            <button type="submit">Войти</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const login = document.getElementById('LOGIN').value.trim();
+            const password = document.getElementById('PASSWORD').value.trim();
+
+            const messageLogin = document.getElementById('messageLogin');
+            const messagePassword = document.getElementById('messagePassword');
+
+            if (login === 'sklad' && password === '123qwe') {
+                window.location.href = 'admin.html';
+            } else {
+                messageLogin.textContent = login === 'sklad' ? "" : "Неверный логин";
+                messagePassword.textContent = password === '123qwe' ? "" : "Неверный пароль";
+            }
+        });
+    </script>
+</body>
+
+</html>
